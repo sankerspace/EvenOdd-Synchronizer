@@ -1,0 +1,40 @@
+# no uncoinstrained paths
+set_input_delay
+set_output_delay
+
+set_false_path -from [get_registers {withsync:inst|dst:dst_inst|ackreg}] -to [get_registers {withsync:inst|sync:sync_ack|sync[1]}]
+set_false_path -from [get_registers {withsync:inst|src:src_inst|reqreg}] -to [get_registers {withsync:inst|sync:sync_req|sync[1]}]
+
+
+#set_instance_assignment -name SYNCHRONIZATION_REGISTER_CHAIN_LENGTH 2 -to withsync:inst|sync:sync_ack|sync[1]
+#set_instance_assignment -name SYNCHRONIZATION_REGISTER_CHAIN_LENGTH 2 -to withsync:inst|sync:sync_req|sync[1]
+
+
+set_global_assignment -name SYNCHRONIZER_IDENTIFICATION -entity sync "Forced If Asynchronous"
+
+
+## Mark entity sync as sychronizer
+##EveryTime TimeQuest is started, execute the command 
+
+------------------------------------------------------------------------------------------------
+[mnl_qsf_reference.pdf]
+
+Values
+•    Auto
+•    Forced
+•    Forced If Asynchronous
+•
+Off
+
+
+
+        set_global_assignment -name SYNCHRONIZER_IDENTIFICATION <value>
+        set_global_assignment -name SYNCHRONIZER_IDENTIFICATION -entity <entity 
+name> <value>
+        set_instance_assignment -name SYNCHRONIZER_IDENTIFICATION -to <to> -entity 
+<entity name> <value
+
+
+
+
+set_global_assignment -name SYNCHRONIZER_IDENTIFICATION -entity sync Forced If Asynchronous
